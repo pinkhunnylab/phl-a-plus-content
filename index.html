@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pink Hunny Lab: Amazon A+ Content Design</title>
+<meta name="description" content="Amazon A+ Content design that turns a closer look into a stronger connection, helping shoppers understand, desire, and feel confident choosing your product.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F8F6F3;
+    --black:#141210;
+    --rose:#CFA7A0;
+    --rose-soft:#E7D6D1;
+    --orange:#C4633A;
+    --pink:#CFA7A0;
+    --muted:#8A8380;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--black);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  button{font-family:inherit;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px;}
+  section{padding:128px 24px;}
+  @media (max-width:700px){ section{padding:76px 20px;} }
+
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:500; margin:0; letter-spacing:-0.01em;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    color:var(--orange);
+    margin-bottom:16px;
+  }
+  .lede{font-size:17px; color:var(--muted); line-height:1.6; max-width:560px;}
+
+  .btn{
+    display:inline-block;
+    text-decoration:none;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:15px;
+    padding:16px 32px;
+    border-radius:40px;
+    transition:transform .15s ease, background .15s ease;
+    cursor:pointer;
+    border:none;
+  }
+  .btn-primary{ background:var(--orange); color:var(--cream); }
+  .btn-primary:hover{ background:#D8754C; transform:translateY(-1px); }
+  .btn-secondary{ background:transparent; color:var(--black); border:1px solid var(--black); }
+  .btn-secondary:hover{ background:var(--black); color:var(--cream); }
+  .btn-row{ display:flex; gap:14px; flex-wrap:wrap; margin-top:28px; }
+
+  /* ---------- NAV (matches listing-images / video pages) ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:var(--cream);
+    border-bottom:1px solid var(--rose-soft);
+  }
+  .nav-inner{
+    max-width:1160px; margin:0 auto; padding:0 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:72px;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif; font-weight:600; font-size:19px;
+    text-decoration:none; color:var(--black);
+    display:flex; align-items:center;
+  }
+  .wordmark img{ height:34px; width:auto; display:block; }
+  .nav-links{ display:flex; align-items:center; gap:32px; }
+  .nav-links a{
+    text-decoration:none; font-size:14.5px; font-weight:500; color:var(--muted);
+    padding:6px 0; border-bottom:2px solid transparent;
+  }
+  .nav-links a:hover{ color:var(--black); }
+  .nav-links a.current{ color:var(--black); border-bottom-color:var(--orange); }
+  .nav-toggle{ display:none; background:none; border:none; cursor:pointer; padding:8px; }
+  .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{
+    display:block; width:22px; height:2px; background:var(--black); position:relative;
+    transition:.2s ease;
+  }
+  .nav-toggle span::before, .nav-toggle span::after{ content:''; position:absolute; left:0; }
+  .nav-toggle span::before{ top:-7px; } .nav-toggle span::after{ top:7px; }
+  .navbtn{
+    display:inline-block; text-decoration:none;
+    font-family:'Inter', sans-serif; font-weight:600; font-size:15px;
+    border-radius:40px; cursor:pointer; border:none;
+    background:var(--pink); color:var(--white);
+    transition:transform .15s ease, background .15s ease;
+  }
+  .nav-links .navbtn{ padding:14px 40px; white-space:nowrap; }
+  .nav-links a.navbtn{ color:var(--white); }
+  .navbtn:hover{ background:#B08E88; transform:translateY(-1px); }
+  .nav-links a.navbtn:hover{ color:var(--white); }
+
+  @media (max-width:820px){
+    .nav-links{
+      position:fixed; top:72px; left:0; right:0; bottom:0;
+      background:var(--cream); flex-direction:column; align-items:flex-start;
+      padding:28px 24px; gap:22px; transform:translateX(100%);
+      transition:transform .25s ease; overflow-y:auto;
+    }
+    .nav-links.open{ transform:translateX(0); }
+    .nav-links a{ font-size:18px; }
+    .nav-links .navbtn{ width:100%; text-align:center; }
+    .nav-toggle{ display:block; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding-top:96px; padding-bottom:80px; text-align:center; }
+  .hero .wrap{ max-width:760px; margin:0 auto; }
+  .hero h1{ font-size:clamp(32px,4.4vw,52px); line-height:1.1; }
+  .hero .lede{ margin:22px auto 0; }
+  .hero .btn-row{ justify-content:center; }
+  .explore-link{
+    display:inline-block; margin-top:22px; font-size:14px; color:var(--muted);
+    text-decoration:underline; text-underline-offset:3px;
+  }
+  .explore-link:hover{ color:var(--black); }
+
+  /* ---------- WHAT A+ DOES ---------- */
+  .what-does{ border-top:1px solid var(--rose-soft); }
+  .what-grid{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:72px; align-items:start; }
+  .what-grid h2{ font-size:clamp(26px,3.2vw,36px); line-height:1.18; }
+  .what-body p.lede{ max-width:none; margin-bottom:0; }
+  @media (max-width:900px){ .what-grid{ grid-template-columns:1fr; gap:32px; } }
+
+  /* ---------- PORTFOLIO ---------- */
+  .portfolio{ background:var(--white); border-top:1px solid var(--rose-soft); border-bottom:1px solid var(--rose-soft); }
+  .portfolio-head{ max-width:640px; margin-bottom:64px; }
+  .portfolio-head h2{ font-size:clamp(26px,3.2vw,36px); line-height:1.18; margin-bottom:16px; }
+  .portfolio-list{ display:grid; gap:80px; }
+  .p-item .brand{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.08em;
+    color:var(--orange); margin-bottom:14px;
+  }
+  .p-item .frame{
+    border-radius:12px; overflow:hidden; background:var(--rose-soft); cursor:pointer;
+    position:relative;
+  }
+  .p-item .frame img{ width:100%; height:auto; display:block; }
+  .p-item .frame .expand-hint{
+    position:absolute; right:14px; bottom:14px;
+    background:rgba(20,18,16,0.6); color:#fff; font-size:12px;
+    padding:6px 12px; border-radius:20px; opacity:0; transition:opacity .2s ease;
+  }
+  .p-item .frame:hover .expand-hint{ opacity:1; }
+  .p-item .cap{ margin-top:16px; font-size:15.5px; color:var(--muted); max-width:640px; }
+  .placeholder-frame{
+    aspect-ratio:970/600; display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:8px; color:var(--muted);
+    font-family:'IBM Plex Mono', monospace; font-size:13px; text-align:center; padding:24px;
+  }
+
+  /* ---------- COMPETING / WHY IT MATTERS ---------- */
+  .competing .wrap{ max-width:720px; text-align:center; }
+  .competing h2{ font-size:clamp(26px,3.6vw,40px); line-height:1.2; }
+  .competing p{ font-size:16.5px; color:var(--muted); line-height:1.7; margin:22px 0 0; }
+  .competing .closing{ color:var(--black); font-weight:500; margin-top:22px; }
+
+  /* ---------- WHAT WE CREATE ---------- */
+  .create{ background:var(--white); border-top:1px solid var(--rose-soft); border-bottom:1px solid var(--rose-soft); }
+  .create-head{ max-width:640px; margin-bottom:56px; }
+  .create-head h2{ font-size:clamp(26px,3.2vw,36px); line-height:1.18; margin-bottom:16px; }
+  .role-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--rose-soft); border:1px solid var(--rose-soft); border-radius:14px; overflow:hidden; }
+  .role-card{ background:var(--white); padding:28px 22px; }
+  .role-card h3{ font-size:16.5px; margin-bottom:10px; font-weight:600; font-family:'Inter',sans-serif; }
+  .role-card p{ font-size:14px; color:var(--muted); margin:0; line-height:1.6; }
+  .create-note{ max-width:720px; margin:40px auto 0; text-align:center; font-size:15px; color:var(--muted); line-height:1.7; }
+  @media (max-width:980px){ .role-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .role-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- PROCESS ---------- */
+  .process h2{ font-size:clamp(26px,3.2vw,36px); margin-bottom:44px; }
+  .process-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:40px; }
+  .process-step .num{ font-family:'IBM Plex Mono', monospace; font-size:14px; color:var(--orange); margin-bottom:16px; }
+  .process-step h3{ font-size:21px; margin-bottom:10px; }
+  .process-step p{ font-size:16px; color:var(--muted); margin:0; line-height:1.65; }
+  @media (max-width:820px){ .process-grid{ grid-template-columns:1fr; row-gap:32px; } }
+
+  /* ---------- FAQ ---------- */
+  .faq{ background:var(--white); border-top:1px solid var(--rose-soft); border-bottom:1px solid var(--rose-soft); }
+  .faq h2{ font-size:clamp(26px,3.2vw,36px); margin-bottom:40px; }
+  .faq-item{ border-bottom:1px solid var(--rose-soft); }
+  .faq-item summary{
+    padding:24px 4px; font-size:17px; font-weight:500; cursor:pointer;
+    list-style:none; display:flex; justify-content:space-between; align-items:center;
+    gap:20px;
+  }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-item summary .icon{ flex-shrink:0; width:20px; height:20px; color:var(--orange); transition:transform .2s ease; }
+  .faq-item[open] summary .icon{ transform:rotate(45deg); }
+  .faq-item p{ padding:0 4px 24px; margin:0; font-size:15.5px; color:var(--muted); line-height:1.7; max-width:680px; }
+  .faq-item p a{ color:var(--orange); text-decoration:underline; }
+
+  /* ---------- CTA ---------- */
+  .cta-section{ text-align:center; }
+  .cta-section h2{ font-size:clamp(28px,4vw,42px); max-width:680px; margin:0 auto 16px; line-height:1.15; }
+  .cta-section .lede{ margin:0 auto; }
+  .cta-section .btn-row{ justify-content:center; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--black); color:var(--cream); padding:64px 24px 32px; }
+  .footer-inner{ max-width:1160px; margin:0 auto; }
+  .footer-top{ display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap; margin-bottom:44px; }
+  .footer-brand .wordmark{ color:var(--cream); font-size:21px; }
+  .footer-brand p{ color:var(--rose); font-size:14px; max-width:340px; margin-top:12px; line-height:1.6; }
+  .footer-links{ display:flex; gap:56px; flex-wrap:wrap; }
+  .footer-col h4{ font-size:12px; font-family:'IBM Plex Mono',monospace; letter-spacing:0.08em; color:var(--rose); margin:0 0 14px; }
+  .footer-col a{ display:block; text-decoration:none; color:var(--cream); font-size:14.5px; margin-bottom:10px; opacity:0.9; }
+  .footer-col a:hover{ opacity:1; text-decoration:underline; }
+  .footer-bottom{ border-top:1px solid rgba(248,246,243,0.15); padding-top:24px; font-size:13px; color:var(--rose); }
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    position:fixed; inset:0; background:rgba(20,18,16,0.94); z-index:100;
+    display:none; align-items:center; justify-content:center; padding:24px;
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox-inner{ max-width:1100px; width:100%; text-align:center; }
+  .lightbox img{ max-width:100%; max-height:82vh; margin:0 auto; border-radius:8px; width:auto; }
+  .lightbox .cap{ color:var(--cream); font-size:14px; margin-top:16px; }
+  .lightbox-close{
+    position:fixed; top:24px; right:24px; background:rgba(255,255,255,0.1); border:none; color:#fff;
+    width:44px; height:44px; border-radius:50%; cursor:pointer; font-size:20px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  :focus-visible{ outline:2px solid var(--orange); outline-offset:2px; }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{
+    opacity:0; transform:translateY(28px);
+    transition:opacity .8s ease, transform .8s ease;
+  }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION — matches phl-listing-images / phl-video-landing
+============================================================= -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="https://pinkhunnylab.com" class="wordmark"><img src="assets/logo.png" alt="Pink Hunny Lab"></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="https://pinkhunnylab.github.io/phl-listing-images/">Listing Images</a>
+      <a href="#top" class="current">A+ Content</a>
+      <a href="https://pinkhunnylab.github.io/phl-video-landing/">Product Videos</a>
+      <a href="https://tidycal.com/1wego4j/amazon-listing-check" class="navbtn">Book a consultation</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO
+============================================================= -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">Amazon A+ Content Design</div>
+    <h1>Give shoppers more reasons to choose your brand.</h1>
+    <p class="lede">A+ Content shows shoppers what your product does, why it's special, and why they should choose it. We design A+ Content that helps people say yes.</p>
+    <div class="btn-row">
+      <a href="https://tidycal.com/1wego4j/amazon-listing-check" class="btn btn-primary">Book a free 30-minute consultation</a>
+      <a href="mailto:hello@pinkhunnylab.com?subject=Amazon%20A%2B%20Content%20Quote" class="btn btn-secondary">Email us for a quote</a>
+    </div>
+    <a href="#portfolio" class="explore-link">Explore the examples ↓</a>
+  </div>
+</header>
+
+<!-- ============================================================
+     WHAT A+ CONTENT DOES
+============================================================= -->
+<section class="what-does">
+  <div class="wrap what-grid reveal">
+    <h2>Keep telling your story after the first scroll.</h2>
+    <div class="what-body">
+      <p class="lede">A+ Content adds richer images, brand storytelling, and product information to your Amazon detail page. It gives shoppers a closer look at what makes your product worth choosing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PORTFOLIO — the main event
+     Edit the PORTFOLIO array in the script at the bottom to swap
+     images, brand names, captions, or add a click-through link.
+============================================================= -->
+<section class="portfolio" id="portfolio">
+  <div class="wrap">
+    <div class="portfolio-head reveal">
+      <div class="eyebrow">Portfolio</div>
+      <h2>Different products. Distinctive brand stories.</h2>
+      <p class="lede">Explore individual A+ banner examples, each shaped around the product's own personality.</p>
+    </div>
+
+    <div class="portfolio-list" id="portfolioList">
+      <!-- Populated by JS from the PORTFOLIO config below -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY A+ CONTENT MATTERS
+============================================================= -->
+<section class="competing">
+  <div class="wrap reveal">
+    <h2>Why does A+ Content matter?</h2>
+    <p>When shoppers visit your product page, they aren't just looking at you. Other products are one click away. A+ Content gives you more space to explain why your product is the right one, before a shopper moves on to something else.</p>
+    <p class="closing">More space to explain yourself means more shoppers who choose you.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHAT WE CREATE
+============================================================= -->
+<section class="create">
+  <div class="wrap">
+    <div class="create-head reveal">
+      <div class="eyebrow">What we create</div>
+      <h2>A clear story, built around your product.</h2>
+      <p class="lede">We plan and design A+ Content with a purpose for each section, from a memorable opening banner to the details shoppers need before they buy.</p>
+    </div>
+    <div class="role-grid reveal">
+      <div class="role-card">
+        <h3>Brand introduction</h3>
+        <p>Establish your product's personality and visual identity.</p>
+      </div>
+      <div class="role-card">
+        <h3>Benefits that matter</h3>
+        <p>Explain the value behind your product's features.</p>
+      </div>
+      <div class="role-card">
+        <h3>Product details</h3>
+        <p>Highlight relevant ingredients, materials, or design choices.</p>
+      </div>
+      <div class="role-card">
+        <h3>Lifestyle and use</h3>
+        <p>Help shoppers picture the product in their own lives.</p>
+      </div>
+      <div class="role-card">
+        <h3>Questions and comparisons</h3>
+        <p>Clarify important buying considerations and relevant options within your range.</p>
+      </div>
+    </div>
+    <p class="create-note">The right combination depends on your product. We build the content around what your customers need to understand.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROCESS
+============================================================= -->
+<section class="process">
+  <div class="wrap reveal">
+    <div class="eyebrow">How we work</div>
+    <h2>Our process</h2>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="num">01</div>
+        <h3>Understand</h3>
+        <p>We review your product, brand, existing listing, and the questions your customers are likely to ask.</p>
+      </div>
+      <div class="process-step">
+        <div class="num">02</div>
+        <h3>Create</h3>
+        <p>We develop the visual direction, messaging, and A+ designs as a connected story.</p>
+      </div>
+      <div class="process-step">
+        <div class="num">03</div>
+        <h3>Refine</h3>
+        <p>We refine the content for clarity, brand consistency, and readability across screen sizes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+============================================================= -->
+<section class="faq">
+  <div class="wrap reveal">
+    <h2>Questions, answered</h2>
+
+    <details class="faq-item" open>
+      <summary>What is the difference between listing images and A+ Content?
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      </summary>
+      <p>Listing images sit in the main product gallery. A+ Content adds a richer brand and product story further down the detail page. We design them to work together.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Can you match my existing branding?
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      </summary>
+      <p>Yes. We build the visual direction around your packaging, colors, typography, and brand personality.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>What do you need to get started?
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      </summary>
+      <p>Your product or listing link, packaging images, brand assets, and accurate product information. We'll discuss the brief during your consultation.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Can every seller use A+ Content?
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      </summary>
+      <p>Access depends on Amazon's current account and product eligibility requirements. We can discuss this with you before the project starts. See <a href="https://sell.amazon.com/tools/a-content" target="_blank" rel="noopener">Amazon's A+ Content overview</a> for their current criteria.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Can I book listing images and videos too?
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      </summary>
+      <p>Yes. We also create <a href="https://pinkhunnylab.github.io/phl-listing-images/">Amazon listing images</a> and <a href="https://pinkhunnylab.github.io/phl-video-landing/">product videos</a> for a consistent visual presence.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA
+============================================================= -->
+<section class="cta-section">
+  <div class="wrap reveal">
+  <h2>Let's make your product worth a closer look.</h2>
+  <p class="lede">Tell us what you sell. We'll help you explore an A+ direction that fits your brand and gives shoppers a clearer reason to choose it.</p>
+  <div class="btn-row">
+    <a href="https://tidycal.com/1wego4j/amazon-listing-check" class="btn btn-primary">Book a free 30-minute consultation</a>
+    <a href="mailto:hello@pinkhunnylab.com?subject=Amazon%20A%2B%20Content%20Quote" class="btn btn-secondary">Email us for a quote</a>
+  </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER — matches phl-listing-images / phl-video-landing
+============================================================= -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="wordmark">Pink Hunny Lab</div>
+        <p>Amazon listing images, A+ Content, and product videos for brands that want to be understood.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="https://pinkhunnylab.github.io/phl-listing-images/">Amazon Listing Images</a>
+          <a href="#top">A+ Content</a>
+          <a href="https://pinkhunnylab.github.io/phl-video-landing/">Product Videos</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <a href="https://tidycal.com/1wego4j/amazon-listing-check">Book a consultation</a>
+          <a href="mailto:hello@pinkhunnylab.com">Email us</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">hello@pinkhunnylab.com</div>
+  </div>
+</footer>
+
+<!-- Lightbox markup — populated by JS -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Expanded image view">
+  <button class="lightbox-close" id="lbClose" aria-label="Close">&times;</button>
+  <div class="lightbox-inner">
+    <img id="lbImg" src="" alt="">
+    <div class="cap" id="lbCap"></div>
+  </div>
+</div>
+
+<script>
+  // ============================================================
+  // PORTFOLIO CONFIG — edit this array to swap images, names,
+  // captions, or add a click-through URL per example.
+  // ============================================================
+  const PORTFOLIO = [
+    {
+      brand: "Vensyl Ferox",
+      caption: "A confident visual identity for men's skincare.",
+      alt: "Vensyl Ferox A+ banner reading 'Leave the Day Behind,' with a black cleanser bottle on a dark stone bathroom counter",
+      src: "assets/portfolio/vensyl.jpg",
+      placeholder: false
+    },
+    {
+      brand: "Simple Plan",
+      caption: "A soft, editorial take on everyday skincare, with lightweight moisture and a calm, gentle glow.",
+      alt: "Simple Plan A+ banner reading 'Lightweight Moisture, Everyday Glow,' with a Day Cream jar surrounded by cream texture and flowers",
+      src: "assets/portfolio/simple-plan.jpg",
+      placeholder: false
+    },
+    {
+      brand: "Seed & Sun",
+      caption: "Everyday nourishment, expressed through warm, tactile visuals.",
+      alt: "Seed & Sun A+ banner reading 'Small Seeds, Daily Nourishment,' with a pouch, sun graphic, and scattered melon seeds",
+      src: "assets/portfolio/seed-sun.jpg",
+      placeholder: false
+    },
+    {
+      brand: "Mango Muse",
+      caption: "A bold tropical identity that puts flavor in focus.",
+      alt: "Mango Muse A+ banner reading 'Mango Takes the Spotlight, Coconut Brings the Smooth,' with the smoothie bottle among fresh mango and coconut",
+      src: "assets/portfolio/mango-muse.jpg",
+      placeholder: false
+    },
+    {
+      brand: "Dayleaf",
+      caption: "A fresh visual direction built around peach, color, and daily ritual.",
+      alt: "Dayleaf A+ banner reading 'Your Greens, With a Peach Twist,' with the jar, fresh peach, and greens powder on a purple ribbon backdrop",
+      src: "assets/portfolio/dayleaf.jpg",
+      placeholder: false
+    }
+  ];
+
+  const list = document.getElementById('portfolioList');
+
+  PORTFOLIO.forEach((item, i) => {
+    const el = document.createElement('div');
+    el.className = 'p-item reveal';
+    const frameContent = item.placeholder
+      ? `<div class="placeholder-frame">
+           <span>DEVELOPMENT PLACEHOLDER</span>
+           <span>${item.brand} banner — swap ${item.src} when supplied</span>
+         </div>`
+      : `<img src="${item.src}" alt="${item.alt || item.brand + ' A+ Content banner'}" loading="${i === 0 ? 'eager' : 'lazy'}">
+         <span class="expand-hint">Click to expand</span>`;
+    el.innerHTML = `
+      <div class="brand">${item.brand}</div>
+      <div class="frame" data-lightbox data-cap="${item.brand}${item.caption ? ': ' + item.caption : ''}" tabindex="0" role="button" aria-label="Expand ${item.brand} banner">
+        ${frameContent}
+      </div>
+      ${item.caption ? `<p class="cap">${item.caption}</p>` : ''}
+    `;
+    list.appendChild(el);
+  });
+
+  // ============ MOBILE NAV ============
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // ============ LIGHTBOX (accessible: keyboard, focus restoration, Escape) ============
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCap = document.getElementById('lbCap');
+  const lbClose = document.getElementById('lbClose');
+  let lastFocused = null;
+
+  function openLightbox(trigger){
+    const img = trigger.querySelector('img');
+    if (!img) return; // don't open on placeholders — nothing real to expand yet
+    lastFocused = trigger;
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCap.textContent = trigger.dataset.cap || '';
+    lightbox.classList.add('open');
+    lbClose.focus();
+    document.addEventListener('keydown', onKeydown);
+  }
+
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    document.removeEventListener('keydown', onKeydown);
+    if (lastFocused) lastFocused.focus();
+  }
+
+  function onKeydown(e){
+    if (e.key === 'Escape') closeLightbox();
+  }
+
+  document.querySelectorAll('[data-lightbox]').forEach(el => {
+    el.addEventListener('click', () => openLightbox(el));
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(el); }
+    });
+  });
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+  // ============ SCROLL REVEAL ============
+  // Fades and lifts each major section block into place once as it
+  // enters the viewport. Respects prefers-reduced-motion via the CSS
+  // transition-duration override earlier in this file.
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    // Fallback for browsers without IntersectionObserver support
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  }
+</script>
+
+</body>
+</html>
